@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ModaMatch</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #f3f5f9;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 40px 60px;
+    background: linear-gradient(
+        135deg,
+        #e26767 0%,
+        #f5c4d4 45%,
+        #eef1f6 45%,
+        #eef1f6 100%
+    );
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+    font-weight: 600;
+}
+
+.form-grid {
+    display: flex;
+    gap: 80px;
+}
+
+.left, .right {
+    width: 50%;
+}
+
+label {
+    display: block;
+    margin: 18px 0 6px;
+    font-size: 14px;
+    color: #444;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    background: #f1f3f6;
+    font-size: 14px;
+}
+
+input::placeholder {
+    color: #999;
+}
+
+button {
+    margin-top: 30px;
+    width: 70%;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    background: #e26767;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1f2227;
+}
+
+
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Sign In</h1>
+
+        <div class="form-grid">
+
+            <div class="left">
+                <label><b>First name</b></label>
+                <input type="text" placeholder="Jane">
+
+                <label><b>Last name</b></label>
+                <input type="text" placeholder="Smitherton">
+
+                <label><b>Email address</b></label>
+                <input type="email" placeholder="email@janesfakedomain.net">
+
+                <label><b>Set Password</b></label>
+                <input type="password" placeholder="Enter new Password">
+
+                <label><b>Phone Number</b></label>
+                <input type="text" placeholder="Enter your phone number">
+
+                <li><a href="index.html"><button class="btn_header">Create</button></a></li>
+
+            </div>
+
+            <div class="right">
+                <label><b>Your Height</b></label>
+                <input type="text" placeholder="Example : 170 cm">
+
+                <label><b>Your Weight</b></label>
+                <input type="text" placeholder="Example : 60Kg">
+
+                <label><b>Shoulder width</b></label>
+                <input type="text" placeholder="Example : 60 cm">
+
+                <label><b>Chest size</b></label>
+                <input type="text" placeholder="Example : 75 cm">
+
+                <label><b>Your waist size</b></label>
+                <input type="text" placeholder="Example : 80 cm">
+
+                <label><b>Gender</b></label>
+                <input type="text" placeholder="male/fmale">
+            </div>
+
+        </div>
+    </div>
+    <script src="js/api.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.container');
+
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        // جمع البيانات
+        const inputs = form.querySelectorAll('input');
+        const userData = {
+            firstName: inputs[0].value,
+            lastName: inputs[1].value,
+            email: inputs[2].value,
+            password: inputs[3].value,
+            phone: inputs[4].value,
+            gender: inputs[10].value.toLowerCase(),
+            height: parseFloat(inputs[5].value) || 0,
+            weight: parseFloat(inputs[6].value) || 0,
+            shoulderWidth: parseFloat(inputs[7].value) || 0,
+            chestSize: parseFloat(inputs[8].value) || 0,
+            waistSize: parseFloat(inputs[9].value) || 0
+        };
+
+        try {
+            const result = await ModaMatchAPI.register(userData);
+
+            if (result.success) {
+                localStorage.setItem('user', JSON.stringify(result.user));
+                alert('✅ تم التسجيل بنجاح!');
+                window.location.href = 'index.html';
+            } else {
+                alert('❌ ' + (result.error || 'فشل التسجيل'));
+            }
+        } catch (error) {
+            alert('❌ حدث خطأ: ' + error.message);
+        }
+    });
+
+    // Change button text
+    const submitBtn = document.querySelector('.btn_header');
+    if (submitBtn) {
+        submitBtn.textContent = 'إنشاء حساب';
+    }
+});
+    </script>
+    <script src="js/api.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.container');
+    const submitBtn = document.querySelector('.btn_header');
+
+    if (submitBtn) {
+        submitBtn.textContent = 'إنشاء حساب';
+        submitBtn.type = 'button'; // منع الإرسال التلقائي
+
+        submitBtn.addEventListener('click', async function() {
+            // جمع البيانات يدوياً
+            const inputs = form.querySelectorAll('input');
+            const userData = {
+                firstName: inputs[0].value,
+                lastName: inputs[1].value,
+                email: inputs[2].value,
+                password: inputs[3].value,
+                phone: inputs[4].value || '',
+                gender: inputs[10].value.toLowerCase()
+            };
+
+            // تحقق من البيانات
+            if (!userData.firstName || !userData.lastName || !userData.email || !userData.password || !userData.gender) {
+                alert('⚠️ جميع الحقول مطلوبة');
+                return;
+            }
+
+            try {
+                console.log('🔄 جاري التسجيل...');
+                const result = await ModaMatchAPI.register(userData);
+
+                if (result.success) {
+                    // حفظ بيانات المستخدم
+                    localStorage.setItem('user', JSON.stringify(result.user));
+
+                    alert('✅ تم إنشاء الحساب بنجاح!');
+                    window.location.href = 'index.html';
+                } else {
+                    alert('❌ ' + (result.error || 'فشل التسجيل'));
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('❌ حدث خطأ: ' + error.message);
+            }
+        });
+    }
+});
+    </script>
+</body>
+</html>

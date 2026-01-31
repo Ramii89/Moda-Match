@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/templatemo-style.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+      <title>moda match</title>
+<style>
+.hero-section {
+    position: relative;
+    padding: 150px 10% 80px;
+    background: #f5f5f5; 
+    overflow: hidden;
+    min-height: 80vh;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 30% 100%);
+    z-index: 1;
+}
+
+.hero-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    z-index: 2; 
+}
+
+.hero-image-box {
+    flex: 1;
+}
+
+.hero-image-box img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.hero-text-box {
+    flex: 1;
+}
+
+.hero-text-box h1 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.hero-text-box p {
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 1.6;
+}
+.selection-section {
+    padding: 60px 10%;
+    background: #f5f5f5;
+    position: relative;
+}
+
+.selection-section::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: white;
+    clip-path: polygon(0 100%, 100% 100%, 100% 0, 0 60%);
+    z-index: 1;
+}
+
+.selection-container {
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    z-index: 2;
+}
+
+.selection-item {
+    text-align: center;
+    width: 45%;
+}
+
+.selection-item img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.choose-circle-btn {
+    background: #333;
+    color: white;
+    border: none;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+
+    display: flex;
+    align-items: center;    
+    justify-content: center; 
+    margin: 0  auto;
+    padding: 0;             
+    line-height: normal;   
+}
+
+.options-section {
+    padding: 40px 10%;
+    background: white;
+}
+
+.options-title {
+    font-size: 7rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.options-grid {
+    display: flex;
+    gap: 40px;
+    justify-content: space-between;
+}
+
+.option-card {
+    flex: 1;
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.option-card img {
+    width: 300px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.option-card p {
+    padding: 15px 0;
+    font-size: 2rem;
+    color: #555;
+}
+.options-grid {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 50px;
+}
+.dropdown-menu {
+    min-width: 150px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.dropdown-menu li a {
+    padding: 10px;
+    display: block;
+    color: #333;
+    text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #f1c40f; 
+    color: white;
+}
+.result-text {
+    margin-top: 15px;
+    font-size: 1.5rem;
+    color: #333;
+    background: #eee;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+
+</style>
+</head>
+<script>
+function showResult(elementId, value) {
+    document.getElementById(elementId).innerText = value;
+    
+    document.getElementById(elementId).style.color = "#f1c40f";
+    document.getElementById(elementId).style.fontWeight = "bold";
+}
+</script>
+<body>
+    <div class="fixed-header">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+					   <span class="icon-bar"></span> 
+					 <button type="button" class="navbar-toggle">
+					   <span class="icon-bar"></span> 
+
+				
+					   
+				
+                </button>
+                <a class="navbar-brand" href="#">Moda Match</a>
+            </div>
+            <nav class="main-menu">
+                <ul>
+                     <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#whyus">why us</a></li>
+                    <li><a href="index.html#aboutus">About us</a></li>
+                    <li><a href="index.html#contactus">contact us </a></li>
+                    <li><a href="login.html "><button class="btn_header">Log in</button></a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+  
+        
+         
+          <section class="hero-section">
+    <div class="hero-container">
+        <div class="hero-image-box">
+            <img src="images/maan.jpeg" alt="Men Fashion">
+        </div>
+        <div class="hero-text-box">
+            <h1>Men closing</h1>
+            <p>Is the coordination problem related to the type of fabric or the colors?
+
+
+Whatever the type of fabric and whatever the season you want to coordinate, we have
+the extensive and sufficient experience to coordinate colors and sizes according to
+what suits you!
+Log in now and let's begin your fashion journey.</p>
+ <button type="button" class="navbar-toggle">
+					   <span class="icon-bar"></span> 
+          <li><a href="man shape.html"><button class="btn_header">choose your shape</button></a></li>
+
+       </section>
+</div>
+    </div>
+<section class="selection-section">
+    <div class="selection-container">
+        <div class="selection-item">
+            <h3>Season</h3>
+            <img src="images/photo_5854922722859748227_y.jpg" alt="Season Selection">
+            <div class="dropdown">
+                <button class="choose-circle-btn dropdown-toggle" type="button" data-toggle="dropdown">
+                    Choose
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="javascript:void(0)" onclick="showResult('season-res', 'Winter')">Winter</a></li>
+                    <li><a href="javascript:void(0)" onclick="showResult('season-res', 'Summer')">Summer</a></li>
+                     <li><a href="javascript:void(0)" onclick="showResult('season-res', 'Autumn')">Autumn</a></li>
+                     <li><a href="javascript:void(0)" onclick="showResult('season-res', 'Spring')">Spring</a></li>
+
+                </ul>
+            </div>
+            <p class="result-text">Selected: <span id="season-res">None</span></p>
+        </div>
+
+        <div class="selection-item">
+            <h3>Event</h3>
+            <img src="images/photo_5854922722859748226_y.jpg" alt="Event Colors">
+            <div class="dropdown">
+                <button class="choose-circle-btn dropdown-toggle" type="button" data-toggle="dropdown">
+                    Choose
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="javascript:void(0)" onclick="showResult('event-res', 'Sport')">Sport</a></li>
+                    <li><a href="javascript:void(0)" onclick="showResult('event-res', 'Classic')">Classic</a></li>
+                  <li><a href="javascript:void(0)" onclick="showResult('event-res', 'Date')">Date</a></li>
+                    <li><a href="javascript:void(0)" onclick="showResult('event-res', 'Event')">Event</a></li>
+
+
+                </ul>
+            </div>
+            <p class="result-text">Selected: <span id="event-res">None</span></p>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="options-section">
+    <h2 class="options-title">Options:</h2>
+    <div class="options-grid">
+        <div class="option-card">
+            <img src="images/1234.jpg" alt="Winter Style">
+            <p><strong>Season:</strong> Winter</p>
+        </div>
+        <div class="option-card">
+            <img src="images/WhatsApp Image 2025-11-29 at 17.35.04_1fe9bf8c.jpg" alt="Color Mix">
+            <p><strong>Event:</strong> Date</p>
+        </div>
+        <div class="option-card">
+            <img src="images/man.jpg" alt="Complete Style">
+            <p><strong>Style:</strong> Burgundy shirt with grey trousers</p>
+        </div>
+    </div>
+</section>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.singlePageNav.min.js">
+    
+    // دالة للحصول على اقتراحات الأزياء
+async function getOutfitSuggestions() {
+    const season = document.getElementById('season-res').textContent;
+    const event = document.getElementById('event-res').textContent;
+
+    if (season === 'None' || event === 'None') {
+        alert('⚠️ الرجاء اختيار الموسم والمناسبة أولاً');
+        return;
+    }
+
+    // الحصول على شكل الجسم من المستخدم
+    const bodyShape = prompt('أدخل شكل جسمك (A, B, C, D, E):', 'A').toUpperCase();
+
+    if (!['A', 'B', 'C', 'D', 'E'].includes(bodyShape)) {
+        alert('⚠️ شكل الجسم يجب أن يكون A, B, C, D, أو E');
+        return;
+    }
+
+    try {
+        const filters = {
+            season: season.toLowerCase(),
+            event: event.toLowerCase(),
+            gender: 'male',
+            bodyShape: bodyShape
+        };
+
+        console.log('Sending filters:', filters);
+
+        const result = await ModaMatchAPI.getOutfitSuggestions(filters);
+        console.log('API Response:', result);
+
+        if (result.success && result.outfits && result.outfits.length > 0) {
+            displayOutfits(result.outfits);
+        } else {
+            alert('⚠️ ' + (result.message || 'لم نتمكن من العثور على اقتراحات مناسبة'));
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('❌ حدث خطأ في الحصول على الاقتراحات');
+    }
+}
+
+// دالة لعرض الأزياء
+function displayOutfits(outfits) {
+    const optionsSection = document.querySelector('.options-section');
+
+    // إنشاء عنصر لعرض النتائج
+    let resultsHTML = `
+        <h2 class="options-title">الاقتراحات:</h2>
+        <div class="options-grid">
+    `;
+
+    outfits.forEach((outfit, index) => {
+        resultsHTML += `
+            <div class="option-card">
+                <img src="${outfit.imageUrl || 'images/man.jpg'}" alt="${outfit.top}" style="width: 300px; height: 250px; object-fit: cover;">
+                <div style="padding: 15px;">
+                    <p><strong>الموسم:</strong> ${outfit.season}</p>
+                    <p><strong>المناسبة:</strong> ${outfit.event}</p>
+                    <p><strong>العلوي:</strong> ${outfit.top}</p>
+                    <p><strong>السفلي:</strong> ${outfit.bottom}</p>
+                    <p><strong>الحذاء:</strong> ${outfit.shoes || 'غير محدد'}</p>
+                    <p><strong>الإكسسوارات:</strong> ${outfit.accessories || 'غير محدد'}</p>
+                    <p><strong>الألوان:</strong> ${outfit.colors ? outfit.colors.join(', ') : 'متنوعة'}</p>
+                    <p><strong>المتاجر:</strong> ${outfit.recommendedStores ? outfit.recommendedStores.join(', ') : 'متنوعة'}</p>
+                </div>
+            </div>
+        `;
+    });
+
+    resultsHTML += `</div>`;
+
+    // استبدال أو إضافة النتائج
+    const existingResults = document.getElementById('outfit-results');
+    if (existingResults) {
+        existingResults.innerHTML = resultsHTML;
+    } else {
+        const resultsDiv = document.createElement('div');
+        resultsDiv.id = 'outfit-results';
+        resultsDiv.innerHTML = resultsHTML;
+        optionsSection.appendChild(resultsDiv);
+    }
+}
+
+// تحديث دالة showResult
+function showResult(elementId, value) {
+    document.getElementById(elementId).innerText = value;
+    document.getElementById(elementId).style.color = "#f1c40f";
+    document.getElementById(elementId).style.fontWeight = "bold";
+
+    // إضافة زر للحصول على الاقتراحات
+    const optionsSection = document.querySelector('.options-section');
+    const existingBtn = document.getElementById('get-suggestions-btn');
+
+    if (!existingBtn) {
+        const btn = document.createElement('button');
+        btn.id = 'get-suggestions-btn';
+        btn.textContent = '🎯 احصل على اقتراحات الأزياء';
+        btn.className = 'btn dark-blue-btn';
+        btn.style.margin = '30px auto';
+        btn.style.display = 'block';
+        btn.style.padding = '15px 30px';
+        btn.style.fontSize = '18px';
+        btn.onclick = getOutfitSuggestions;
+
+        optionsSection.appendChild(btn);
+    }
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

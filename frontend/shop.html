@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/templatemo-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <title>moda match</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+
+
+
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 50px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #8b6b5d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+
+            .nav-links a {
+                text-decoration: none;
+                color: #333;
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+        .login-btn {
+            background-color: #c4a494;
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 5px;
+        }
+
+
+        .hero-section {
+            width: 100%;
+            height: 450px;
+            background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070'); /* صورة تعبيرية للموضة */
+            background-size: cover;
+            background-position: center;
+        }
+
+
+        .shop-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 80px 10%;
+            min-height: 400px;
+            z-index: 1;
+        }
+
+
+            .shop-container::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #f4f4f4;
+                z-index: -1;
+                clip-path: polygon(0 0, 35% 0, 55% 100%, 0% 100%);
+            }
+
+
+            .shop-container.reversed {
+                flex-direction: row-reverse;
+            }
+
+                .shop-container.reversed::before {
+                    clip-path: polygon(100% 0, 65% 0, 45% 100%, 100% 100%);
+                }
+
+
+
+        .shop-text h2 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            color: #000;
+        }
+
+        .shop-text p {
+            color: #888;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .shop-button {
+            display: inline-block;
+            background-color: #000;
+            color: #fff;
+            padding: 12px 35px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+            .shop-button:hover {
+                opacity: 0.8;
+                transform: translateY(-2px);
+            }
+
+
+        .shop-img img {
+            max-width: 350px;
+            height: auto;
+            display: block;
+        }
+
+
+        @media (max-width: 768px) {
+            .shop-container, .shop-container.reversed {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px;
+            }
+
+                .shop-container::before {
+                    clip-path: none;
+                }
+
+            .shop-img img {
+                max-width: 250px;
+                margin-top: 30px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <nav class="navbar">
+        <div class="logo">MODA Match</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#whyus">why us</a></li>
+            <li><a href="index.html#aboutus">About us</a></li>
+            <li><a href="index.html#contactus">contact us </a></li>
+            <li><a href="login.html "><button class="btn_header">Log in</button></a></li>
+        </ul>
+    </nav>
+
+    <div class="hero-section"></div>
+
+    <div class="shop-container">
+        <div class="shop-text">
+            <h2>Shop from Shein</h2>
+            <p>Find your preferred option</p>
+            <a href="https://www.shein.com" target="_blank" class="shop-button">Shop</a>
+        </div>
+        <div class="shop-img">
+            <img src="images/shein.jpg" alt="Shein">
+        </div>
+    </div>
+
+    <div class="shop-container reversed">
+        <div class="shop-text">
+            <h2>Shop From AliExpress</h2>
+            <p>Find your preferred option</p>
+            <a href="https://www.aliexpress.com" target="_blank" class="shop-button">Shop</a>
+        </div>
+        <div class="shop-img">
+            <img src="images/order.jpg" alt="AliExpress">
+        </div>
+    </div>
+
+    <div class="shop-container">
+        <div class="shop-text">
+            <h2>Shop from TEMU</h2>
+            <p>Find your preferred option</p>
+            <a href="https://www.temu.com" target="_blank" class="shop-button">Shop</a>
+        </div>
+        <div class="shop-img">
+            <img src="images/temu.jpg" alt="TEMU">
+        </div>
+    </div>
+    <script>
+
+        function checkScrollPosition() {
+            if ($(window).scrollTop() > 50) {
+                $(".fixed-header").addClass("scroll");
+            } else {
+                $(".fixed-header").removeClass("scroll");
+            }
+
+        }
+
+        $(document).ready(function () {
+            $('.fixed-header').singlePageNav({
+                offset: 59,
+                filter: ':not(.external)',
+                updateHash: true
+            });
+
+            checkScrollPosition();
+
+            $('.navbar-toggle').click(function () {
+                $('.main-menu').toggleClass('show');
+            });
+
+            $('.main-menu a').click(function () {
+                $('.main-menu').removeClass('show');
+            });
+        });
+
+        $(window).on("scroll", function () {
+            checkScrollPosition();
+        });
+    </script>
+    <h3>AI Style Assistant</h3>
+
+    <input type="text" id="aiInput" placeholder="Describe the outfit you want..." style="width:300px;">
+    <button onclick="askAIText()">Ask AI</button>
+
+    <p id="aiResult"></p>
+    
+    <script src="js/api.js"></script>
+
+</body>
+</html>

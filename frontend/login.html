@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/templatemo-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>ModaMatch</title>
+    <style>
+
+        form {
+            border: 3px solid #f1f1f1;
+        }
+
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #e2e2e2;
+            box-sizing: border-box;
+        }
+
+
+        button {
+            background-color: rgb(215, 99, 124);
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 50%;
+            margin-left: 20%;
+            border-radius: 15px;
+        }
+
+            button:hover {
+                opacity: 0.8;
+            }
+
+
+
+        .text {
+            text-align: center;
+            margin: 70px 0 70px 0;
+            width: 100%;
+            font-size: xx-large;
+        }
+
+
+
+
+
+
+        /* The "Forgot password" text */
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+
+            .cancelbtn {
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <form action="action_page.php" method="post">
+        <div class="text">
+            <p><b>Login</b></p>
+        </div>
+
+        <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+
+            <button type="submit">Login</button>
+            <br>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <p class="psw"><a href="forget password.html"><b>Forgot password?</b></a></p>
+            <p class=""><a href="sign in.html"><b>Don’t have account yet?</b></a></p>
+
+        </div>
+    </form>
+
+    <script src="js/api.js"></script>
+    <script>
+document.querySelector('form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const email = document.querySelector('input[name="uname"]').value;
+    const password = document.querySelector('input[name="psw"]').value;
+
+    try {
+        const result = await ModaMatchAPI.login(email, password);
+
+        if (result.success) {
+            // حفظ بيانات المستخدم
+            localStorage.setItem('user', JSON.stringify(result.user));
+            localStorage.setItem('token', result.token || 'dummy-token');
+
+            // توجيه للصفحة الرئيسية
+            alert('✅ تم تسجيل الدخول بنجاح!');
+            window.location.href = 'index.html';
+        } else {
+            alert('❌ ' + (result.error || 'فشل تسجيل الدخول'));
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('❌ حدث خطأ في الاتصال بالسيرفر');
+    }
+});
+    </script>
+    <script src="js/api.js"></script>
+    <script>
+document.querySelector('form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const email = document.querySelector('input[name="uname"]').value;
+    const password = document.querySelector('input[name="psw"]').value;
+
+    if (!email || !password) {
+        alert('⚠️ البريد الإلكتروني وكلمة المرور مطلوبان');
+        return;
+    }
+
+    try {
+        console.log('🔄 جاري تسجيل الدخول...');
+        const result = await ModaMatchAPI.login(email, password);
+
+        if (result.success) {
+            // حفظ بيانات المستخدم
+            localStorage.setItem('user', JSON.stringify(result.user));
+
+            alert('✅ تم تسجيل الدخول بنجاح!');
+            window.location.href = 'index.html';
+        } else {
+            alert('❌ ' + (result.error || 'فشل تسجيل الدخول'));
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('❌ حدث خطأ: ' + error.message);
+    }
+});
+    </script>
+</body>
+</html>
